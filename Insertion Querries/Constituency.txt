@@ -1,0 +1,198 @@
+--Insertion of Constituency - Max 5 constituencies for 1 state/Union Teretory
+-- Andhra Pradesh (AP)
+INSERT INTO Constituency VALUES (1, 'Amalapuram', 49, 'AP');
+INSERT INTO Constituency VALUES (2, 'Anantapur', 39, 'AP');
+INSERT INTO Constituency VALUES (3, 'Araku', 87, 'AP');
+INSERT INTO Constituency VALUES (4, 'Bapatla', 66, 'AP');
+INSERT INTO Constituency VALUES (5, 'Chittoor', 10, 'AP');
+
+-- Arunachal Pradesh (AR)
+INSERT INTO Constituency VALUES (6, 'Arunachal East', 205, 'AR');
+INSERT INTO Constituency VALUES (7, 'Arunachal West', 90, 'AR');
+
+-- Assam (AS)
+INSERT INTO Constituency VALUES (8, 'Autonomous District', 18, 'AS');
+INSERT INTO Constituency VALUES (9, 'Barpeta', 54, 'AS');
+INSERT INTO Constituency VALUES (10, 'Dhubri', 91, 'AS');
+INSERT INTO Constituency VALUES (11, 'Dibrugarh', 54, 'AS');
+INSERT INTO Constituency VALUES (12, 'Gauhati', 64, 'AS');
+
+-- Bihar (BR)
+INSERT INTO Constituency VALUES (13, 'Araria', 47, 'BR');
+INSERT INTO Constituency VALUES (14, 'Arrah', 70, 'BR');
+INSERT INTO Constituency VALUES (15, 'Aurangabad', 40, 'BR');
+INSERT INTO Constituency VALUES (16, 'Banka', 110, 'BR');
+INSERT INTO Constituency VALUES (17, 'Begusarai', 32, 'BR');
+
+-- Chhattisgarh (CG)
+INSERT INTO Constituency VALUES (18, 'Bastar', 41,'CG');
+INSERT INTO Constituency VALUES (19,'Bilaspur', 70,'CG');
+INSERT INTO Constituency VALUES (20,'Durg', 49,'CG');
+INSERT INTO Constituency VALUES (21,'Janjgir Champa', 50,'CG');
+INSERT INTO Constituency VALUES (22,'Kanker', 49,'CG');
+
+-- Goa (GA)
+INSERT INTO Constituency VALUES (23,'North Goa', 137,'GA');
+INSERT INTO Constituency VALUES (24,'South Goa', 138,'GA');
+
+-- Gujarat (GJ)
+INSERT INTO Constituency VALUES (25,'Ahmedabad East', 53,'GJ');
+INSERT INTO Constituency VALUES (26,'Ahmedabad West', 71,'GJ');
+INSERT INTO Constituency VALUES (27,'Amreli', 78,'GJ');
+INSERT INTO Constituency VALUES (28,'Anand', 52,'GJ');
+INSERT INTO Constituency VALUES (29,'Banaskantha', 35,'GJ');
+
+-- Haryana (HR)
+INSERT INTO Constituency VALUES (30,'Ambala', 42,'HR');
+INSERT INTO Constituency VALUES (31,'Bhiwani Mahendragarh', 84,'HR');
+INSERT INTO Constituency VALUES (32,'Faridabad', 67,'HR');
+INSERT INTO Constituency VALUES (33,'Gurgaon', 27,'HR');
+INSERT INTO Constituency VALUES (34,'Hisar', 82,'HR');
+
+-- Himachal Pradesh (HP)
+INSERT INTO Constituency VALUES (35,'Hamirpur', 93,'HP');
+INSERT INTO Constituency VALUES (36,'Kangra', 48,'HP');
+INSERT INTO Constituency VALUES (37,'Mandi', 95,'HP');
+INSERT INTO Constituency VALUES(38,'Shimla', 48,'HP');
+
+-- Jharkhand (JH)
+INSERT INTO Constituency VALUES (39,'Chatra', 68,'JH');
+INSERT INTO Constituency VALUES (40,'Dhanbad', 12,'JH');
+INSERT INTO Constituency VALUES (41,'Dumka', 47,'JH');
+INSERT INTO Constituency VALUES (42,'Giridih', 35,'JH');
+INSERT INTO Constituency VALUES (43,'Godda', 118,'JH');
+
+-- Karnataka (KA)
+INSERT INTO Constituency VALUES (44,'Bagalkot', 47,'KA');
+INSERT INTO Constituency VALUES (45,'Bangalore Central', 28,'KA');
+INSERT INTO Constituency VALUES (46,'Bangalore North', 73,'KA');
+INSERT INTO Constituency VALUES (47,'Bangalore Rural', 65,'KA');
+INSERT INTO Constituency VALUES (48,'Bangalore South', 74,'KA');
+
+-- Kerala (KL)
+INSERT INTO Constituency VALUES (49,'Alappuzha', 130,'KL');
+INSERT INTO Constituency VALUES (50,'Alathur', 64,'KL');
+INSERT INTO Constituency VALUES (51,'Attingal', 22,'KL');
+INSERT INTO Constituency VALUES (52,'Chalakudy', 42,'KL');
+INSERT INTO Constituency VALUES (53,'Ernakulam', 44,'KL');
+
+-- Madhya Pradesh (MP)
+INSERT INTO Constituency VALUES (54,'Balaghat', 78,'MP');
+INSERT INTO Constituency VALUES (55,'Betul', 26,'MP');
+INSERT INTO Constituency VALUES (56,'Bhind', 36,'MP');
+INSERT INTO Constituency VALUES (57,'Bhopal', 69,'MP');
+INSERT INTO Constituency VALUES (58,'Chhindwara', 64,'MP');
+
+-- Maharashtra (MH)
+INSERT INTO Constituency VALUES (59, 'Ahmednagar', 109, 'MH');
+INSERT INTO Constituency VALUES (60, 'Akola', 46, 'MH');
+INSERT INTO Constituency VALUES (61, 'Amravati', 27, 'MH');
+INSERT INTO Constituency VALUES (62, 'Aurangabad', 27, 'MH');
+INSERT INTO Constituency VALUES (63, 'Baramati', 90, 'MH');
+
+-- Manipur(MN)
+INSERT INTO Constituency VALUES(64 ,'Inner Manipur' , 111 ,'MN' );
+INSERT INTO Constituency VALUES(65 ,'Outer Manipur' , 188 ,'MN' );
+
+-- Meghalaya(ML)
+INSERT INTO Constituency VALUES(66 ,'Shillong' , 102,'ML' );
+INSERT INTO Constituency VALUES(67 ,'Tura' , 200,'ML' );
+
+-- Mizoram(MZ)
+INSERT INTO Constituency VALUES(68 ,'Mizoram' , 267,'MZ' );
+
+-- Nagaland(NL)
+INSERT INTO Constituency VALUES(69 ,'Nagaland' , 279,'NL' );
+
+-- Odisha(OR)
+INSERT INTO Constituency VALUES(70 ,'Aska' , 41,'OD' );
+INSERT INTO Constituency VALUES(71 ,'Balasore' , 105,'OD' );
+INSERT INTO Constituency VALUES(72 ,'Bargarh' , 31,'OD' );
+INSERT INTO Constituency VALUES(73 ,'Berhampur' , 105,'OD' );
+INSERT INTO Constituency VALUES(74 ,'Bhadrak' , 33,'OD' );
+
+-- Punjab(PB)
+INSERT INTO Constituency VALUES (75,'Amritsar', 77,'PB');
+INSERT INTO Constituency VALUES (76,'Anandpur Sahib', 26,'PB');
+INSERT INTO Constituency VALUES (77,'Bathinda', 51,'PB');
+INSERT INTO Constituency VALUES (78,'Faridkot', 90,'PB');
+INSERT INTO Constituency VALUES (79,'Fatehgarh Sahib', 51,'PB');
+
+-- Rajasthan (RJ)
+INSERT INTO Constituency VALUES (80,'Ajmer', 58,'RJ');
+INSERT INTO Constituency VALUES (81,'Alwar', 40,'RJ');
+INSERT INTO Constituency VALUES (82,'Banswara', 64,'RJ');
+INSERT INTO Constituency VALUES (83,'Barmer', 65,'RJ');
+INSERT INTO Constituency VALUES (84,'Bharatpur', 41,'RJ');
+
+-- Sikkim(SK)
+INSERT INTO Constituency VALUES (85,'Sikkim', 306,'SK');
+
+-- Tamil Nadu(TN)
+INSERT INTO Constituency VALUES (86,'Arakkonam', 40,'TN');
+INSERT INTO Constituency VALUES (87,'Arani', 80,'TN');
+INSERT INTO Constituency VALUES (88,'Chennai 95', 72,'TN');
+INSERT INTO Constituency VALUES (89,'Chennai North', 40,'TN');
+INSERT INTO Constituency VALUES (90,'Chennai South', 71,'TN');
+
+-- Telangana(TS)
+INSERT INTO Constituency VALUES (91,'Adilabad', 54,'TS');
+INSERT INTO Constituency VALUES (92,'Bhongir', 73,'TS');
+INSERT INTO Constituency VALUES (93,'Chevella', 81,'TS');
+INSERT INTO Constituency VALUES (94,'Hyderabad', 36,'TS');
+INSERT INTO Constituency VALUES (95,'Karimnagar', 54,'TS');
+
+-- Tripura(TR)
+INSERT INTO Constituency VALUES (96, 'Tripura East', 72, 'TR');
+INSERT INTO Constituency VALUES (97, 'Tripura West', 216, 'TR');
+
+-- Uttar Pradesh(UP)
+INSERT INTO Constituency VALUES(98 ,'Agra' ,66 ,'UP' );
+INSERT INTO Constituency VALUES(99 ,'Akbarpur' ,69 ,'UP' );
+INSERT INTO Constituency VALUES(100 ,'Aligarh' ,41 ,'UP' );
+INSERT INTO Constituency VALUES(101 ,'Allahabad' ,45 ,'UP' );
+INSERT INTO Constituency VALUES(102 ,'Ambedkar Nagar' ,61 ,'UP' );
+
+-- Uttarakhand (UK)
+INSERT INTO Constituency VALUES (103,'Almora', 22,'UK');
+INSERT INTO Constituency VALUES (104,'Garhwal', 67,'UK');
+INSERT INTO Constituency VALUES (105,'Hardwar', 22,'UK');
+INSERT INTO Constituency VALUES (106,'Nainital Udhamsingh Nagar', 156,'UK');
+INSERT INTO Constituency VALUES (107,'Tehri Garhwal', 22,'UK');
+
+-- West Bengal (WB)
+INSERT INTO Constituency VALUES (108,'Alipurduars', 21,'WB');
+INSERT INTO Constituency VALUES (109,'Arambagh', 50,'WB');
+INSERT INTO Constituency VALUES (110,'Asansol', 44,'WB');
+INSERT INTO Constituency VALUES (111,'Baharampur', 15,'WB');
+INSERT INTO Constituency VALUES (112,'Balurghat', 36,'WB');
+
+-- Andaman and Nicobar Islands (AN)
+INSERT INTO Constituency VALUES (113,'Andaman and Nicobar Islands', 251,'AN');
+
+-- Chandigarh(CH)
+INSERT INTO Constituency VALUES(114 ,'Chandigarh' ,291 ,'CH' );
+
+-- Dadra and Nagar Haveli and Daman and Diu(DN)
+INSERT INTO Constituency VALUES(115 ,'Dadra and Nagar Haveli' ,253 ,'DN' );
+INSERT INTO Constituency VALUES(116 ,'Daman and Diu' ,288 ,'DN' );
+
+-- Delhi(DL)
+INSERT INTO Constituency VALUES(117 ,'Chandni Chowk' ,26 ,'DL' );
+INSERT INTO Constituency VALUES(118 ,'East Delhi' ,78 ,'DL' );
+INSERT INTO Constituency VALUES(119 ,'New Delhi' ,102 ,'DL' );
+INSERT INTO Constituency VALUES(120 ,'North East Delhi' ,50 ,'DL' );
+INSERT INTO Constituency VALUES(121 ,'North West Delhi' ,26 ,'DL' );
+
+-- Jammu and Kashmir (JK)
+INSERT INTO Constituency VALUES (122,'Anantnag', 84,'JK');
+INSERT INTO Constituency VALUES (123,'Baramulla', 59,'JK');
+INSERT INTO Constituency VALUES (124,'Jammu', 56,'JK');
+INSERT INTO Constituency VALUES (125,'Ladakh', 44,'JK');
+INSERT INTO Constituency VALUES (126,'Srinagar', 42,'JK');
+
+-- Lakshadweep(LD)
+INSERT INTO Constituency VALUES (127,'Lakshadweep', 303,'LD');
+
+-- Puducherry(PY)
+INSERT INTO Constituency VALUES (128,'Puducherry',289,'PY');

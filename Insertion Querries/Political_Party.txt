@@ -1,0 +1,10 @@
+INSERT INTO PoliticalParty VALUES ('BJP', 'Bharatiya Janata Party', 'Lotus', '1980-04-06', 'Narendra Modi', 5185);
+INSERT INTO PoliticalParty VALUES ('INC', 'Indian National Congress', 'Hand', '1885-12-28', 'Sonia Gandhi', 2335);
+INSERT INTO PoliticalParty VALUES ('AAP', 'Aam Aadmi Party', 'Broom', '2012-11-26', 'Arvind Kejriwal', 9506);
+INSERT INTO PoliticalParty VALUES ('BSP', 'Bahujan Samaj Party', 'Elephant', '1984-04-14', 'Mayawati', 4280);
+INSERT INTO PoliticalParty VALUES ('SP', 'Samajvadi Party', 'Cycle', '1992-10-04', 'Akhilesh Yadav', 1528);
+INSERT INTO PoliticalParty VALUES ('DMK', 'Dravida Munnetra Kazhagam', 'Rising Sun', '1949-09-17', 'M. K. Stalin', 6235);
+INSERT INTO PoliticalParty VALUES ('TMC', 'All India Trinamool Congress', 'Flowers and Grass', '1998-01-01', 'Mamata Banerjee', 8475);
+INSERT INTO PoliticalParty VALUES ('SS', 'Shiv Sena', 'Bow and Arrow', '1966-06-19', 'Uddhav Thackeray', 7561);
+INSERT INTO PoliticalParty VALUES ('TRS', 'Telangana Rashtra Samithi', 'Car', '2001-04-27', 'K. Chandrashekar Rao', 4754);
+INSERT INTO PoliticalParty VALUES ('JDU', 'Janata Dal (United)', 'Arrowhead with two horizontal lines at the bottom of it.', '1999-10-30', 'Nitish Kumar', 6443);
