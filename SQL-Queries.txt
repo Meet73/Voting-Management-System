@@ -1,0 +1,208 @@
+1. Get the polling booth with the highest voter turnout in a specific district
+
+SELECT PollingBooth.BoothID, PollingBooth.BoothName, Districts.DistrictName, Districts.Voterpercentage
+FROM PollingBooth
+JOIN Constituency ON PollingBooth.ConstituencyID = Constituency.ConstituencyID
+JOIN Districts ON Constituency.ConstituencyID = Districts.ConstituencyID
+WHERE Districts.DistrictID = 1
+ORDER BY Districts.Voterpercentage DESC
+LIMIT 1;
+
+
+2. Retrieve the name and total property valuation of the candidate who received the most votes in a specific election:
+
+SELECT Candidate.FirstName, Candidate.LastName, Candidate.TotalPropertyValuation
+FROM Candidate
+JOIN (
+  SELECT CandidateID
+  FROM Results
+  WHERE ElectionID = 'EL001'
+  ORDER BY VotesReceive DESC
+  LIMIT 1
+) AS WinningCandidate ON Candidate.CandidateID = WinningCandidate.CandidateID;
+
+
+3. Retrieve the name and contact information of the voter who submitted the highest-rated feedback for a specific polling booth:
+
+SELECT Voter.FirstName, Voter.LastName, Voter.Email, Voter.Phone
+FROM Voter
+JOIN (
+  SELECT VoterID
+  FROM VotingFeedback
+  WHERE PollingBoothID = 'B1C001'
+  ORDER BY FeedbackRating DESC
+  LIMIT 1
+) AS BestFeedback ON Voter.VoterID = BestFeedback.VoterID;
+
+
+4. Retrieve the number of male and female voters in each district:
+
+SELECT Districts.DistrictName, 
+    SUM(CASE WHEN Voter.Gender = 'M' THEN 1 ELSE 0 END) AS MaleVoters,
+    SUM(CASE WHEN Voter.Gender = 'F' THEN 1 ELSE 0 END) AS FemaleVoters
+FROM Districts
+JOIN Constituency ON Districts.ConstituencyID = Constituency.ConstituencyID
+JOIN Voter ON Voter.ConstituencyID = Constituency.ConstituencyID
+GROUP BY Districts.DistrictName, Constituency.stateid;
+
+
+5. Retrieve the name and manifesto title of the political party with the longest manifesto description.
+sql
+
+SELECT PoliticalParty.PartyName, PartyManifesto.ManifestoTitle
+FROM PoliticalParty
+INNER JOIN PartyManifesto ON PoliticalParty.PartyID = PartyManifesto.PartyID
+WHERE LENGTH(PartyManifesto.ManifestoDescription) = (
+  SELECT MAX(LENGTH(ManifestoDescription))
+  FROM PartyManifesto
+);
+
+
+6. Return the names of all constituencies and their corresponding state names where the total number of registered voters is greater than the average number of registered voters across all constituencies.
+
+SELECT ConstituencyName, StateName
+FROM Constituency
+JOIN State ON Constituency.StateID = State.StateID
+WHERE TotalVoters > (SELECT AVG(TotalVoters) FROM Constituency);
+
+
+7. Return the list of all the political parties that have a manifesto with a specific keyword.
+
+SELECT PoliticalParty.PartyName, PartyManifesto.ManifestoTitle, PartyManifesto.ManifestoDescription 
+FROM PoliticalParty 
+INNER JOIN PartyManifesto ON PoliticalParty.PartyID = PartyManifesto.PartyID 
+WHERE PartyManifesto.ManifestoDescription LIKE '%education%';
+
+
+8. Return the list of all the staff members who were responsible for a specific work role.
+
+SELECT Staff.FirstName, Staff.LastName, Staff.WorkRole, PollingBooth.BoothName 
+FROM Staff 
+INNER JOIN PollingBooth ON Staff.PollingBoothID = PollingBooth.BoothID 
+WHERE Staff.WorkRole = 'Polling Agent';
+
+
+9. Give List Candidates who received highest number of votes in their respective constituency
+
+SELECT candidateid,
+       votesreceive,
+       results.constituencyid,
+       electionid
+FROM results
+JOIN
+  (SELECT max(votesreceive) AS maxvote,
+          constituencyid
+   FROM results
+   GROUP BY constituencyid
+   ORDER BY constituencyid) AS cnt ON cnt.constituencyid = results.constituencyid
+WHERE votesreceive = cnt.maxvote;
+
+
+10. Give details of candidate and party who received highest number of votes in their respective constituency
+
+SELECT candidate.candidateid,
+       firstname,
+       lastname,
+       totalpropertyvaluation,
+       partyname,
+       candidate.constituencyid
+FROM politicalparty
+JOIN candidate ON candidate.partyid = politicalparty.partyid
+JOIN
+  (SELECT candidateid,
+          votesreceive,
+          results.constituencyid,
+          electionid
+   FROM results
+   JOIN
+     (SELECT max(votesreceive) AS maxvote,
+             constituencyid
+      FROM results
+      GROUP BY constituencyid
+      ORDER BY constituencyid) AS cnt ON cnt.constituencyid = results.constituencyid
+   WHERE votesreceive = cnt.maxvote) AS rs ON rs.candidateid = candidate.candidateid;
+
+
+11. Retrieve the total number of votes received by each political party in a specific election:
+
+SELECT PoliticalParty.PartyName, SUM(Results.VotesReceive) AS TotalVotes
+FROM PoliticalParty
+JOIN Candidate ON PoliticalParty.PartyID = Candidate.PartyID
+JOIN Results ON Candidate.CandidateID = Results.CandidateID
+WHERE Results.ElectionID = 'EL001'
+GROUP BY PoliticalParty.PartyName
+ORDER BY TotalVotes DESC
+
+
+12. Retrieve the details of the polling booth with the highest average feedback rating:
+
+SELECT PollingBooth.BoothID, PollingBooth.BoothName, AVG(VotingFeedback.FeedbackRating) AS AvgRating
+FROM PollingBooth
+JOIN VotingFeedback ON PollingBooth.BoothID = VotingFeedback.PollingBoothID
+GROUP BY PollingBooth.BoothID, PollingBooth.BoothName
+ORDER BY AvgRating DESC;
+
+
+13. Retrieve the details of all voters who have not given any feedback: **/* 
+
+SELECT Voter.*
+FROM Voter
+LEFT JOIN VotingFeedback ON Voter.VoterID = VotingFeedback.VoterID
+WHERE VotingFeedback.VoterID IS NULL
+
+
+14. Find the name and address of the polling booth with the lowest feedback rating:
+
+SELECT PollingBooth.BoothName, PollingBooth.City, PollingBooth.State, PollingBooth.ConstituencyID
+FROM PollingBooth
+INNER JOIN VotingFeedback ON PollingBooth.BoothID = VotingFeedback.PollingBoothID
+GROUP BY PollingBooth.BoothID
+HAVING AVG(VotingFeedback.FeedbackRating) = (
+  SELECT MIN(AvgFeedbackRating)
+  FROM (
+    SELECT AVG(FeedbackRating) AS AvgFeedbackRating
+    FROM VotingFeedback
+    GROUP BY PollingBoothID
+  ) AS AvgFeedback
+);
+
+
+15.  Find the name and address of the polling booth where a particular voter cast their ballot: 
+
+SELECT PollingBooth.BoothName, Voter.StreetNo, Voter.StreetName, Voter.City, Voter.State
+FROM PollingBooth
+INNER JOIN Ballot ON PollingBooth.BoothID = Ballot.PollingBoothID
+INNER JOIN Voter ON Ballot.VoterID = Voter.VoterID
+WHERE voter.VoterID = '1001';
+
+
+16.Find the average GDP for all states in the database:
+
+SELECT AVG(GDP) AS AverageGDP FROM State;
+
+
+17. Find the total number of votes cast in a particular election
+
+SELECT COUNT(*) AS TotalVotes
+FROM Ballot
+WHERE ElectionID = 'EL001';
+
+
+18. Find the polling booth with the highest number of votes during a specific election:
+
+SELECT PollingBoothID, COUNT(*) AS TotalVotes
+FROM Ballot
+WHERE ElectionID = 'EL001'
+GROUP BY PollingBoothID
+ORDER BY TotalVotes DESC
+LIMIT 1;
+
+
+19. List the top 5 political parties by total property valuation of their candidates:
+
+SELECT PoliticalParty.PartyName, SUM(Candidate.TotalPropertyValuation) as TotalPropertyValue
+FROM Candidate
+INNER JOIN PoliticalParty ON Candidate.PartyID = PoliticalParty.PartyID
+GROUP BY PoliticalParty.PartyName
+ORDER BY TotalPropertyValue DESC 
+LIMIT 5
