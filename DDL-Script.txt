@@ -1,0 +1,174 @@
+CREATE TABLE State (
+  StateID CHAR(2) PRIMARY KEY,
+  StateName VARCHAR(50) NOT NULL,
+  GDP FLOAT,
+  Population INT,
+  Area FLOAT
+);
+
+CREATE TABLE Constituency (
+  ConstituencyID INT PRIMARY KEY,
+  ConstituencyName VARCHAR(50) NOT NULL,
+  TotalVoters INT,
+  StateID CHAR(2) NOT NULL, 
+
+  FOREIGN KEY (StateID) REFERENCES State(StateID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Voter (
+  VoterID INT PRIMARY KEY,
+  FirstName VARCHAR(50) NOT NULL,
+  LastName VARCHAR(50) NOT NULL,
+  StreetNo INT,
+  StreetName VARCHAR(70),
+  City VARCHAR(50),
+  State VARCHAR(50),
+  DateOfBirth DATE NOT NULL,
+  Gender CHAR(1),
+  Email VARCHAR(100),
+  Phone VARCHAR(20) NOT NULL,
+  ConstituencyID INT NOT NULL,
+  
+  FOREIGN KEY (ConstituencyID) REFERENCES Constituency(ConstituencyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE PoliticalParty (
+  PartyID CHAR(3) PRIMARY KEY,
+  PartyName VARCHAR(50) NOT NULL,
+  PartyLogo  VARCHAR(100),
+  Founded DATE,
+  LeaderName VARCHAR(70),
+  LeaderVoterID INT NOT NULL,
+  
+  FOREIGN KEY (LeaderVoterID) REFERENCES Voter(VoterID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+	
+);
+
+CREATE TABLE PartyManifesto (
+  ManifestoID INT PRIMARY KEY,
+  PartyID CHAR(3) NOT NULL,
+  ManifestoTitle VARCHAR(50) NOT NULL,
+  ManifestoDescription TEXT NOT NULL,
+  PublicationDate DATE,
+  
+  FOREIGN KEY (PartyID) REFERENCES PoliticalParty(PartyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Districts (
+  DistrictID INT PRIMARY KEY,
+  DistrictName VARCHAR(50) NOT NULL,
+  ConstituencyID INT NOT NULL,
+  Population INT,
+  RegisteredVoters INT,
+  VoterPercentage DECIMAL(5,2),
+  Area FLOAT,
+  
+  FOREIGN KEY (ConstituencyID) REFERENCES Constituency(ConstituencyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Election (
+  ElectionID VARCHAR(50),
+  ElectionDate DATE,
+  VotingOption VARCHAR(50),
+  ConstituencyID INT,
+  
+  PRIMARY KEY(ElectionID, ConstituencyID),
+  
+  FOREIGN KEY (ConstituencyID) REFERENCES Constituency(ConstituencyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Candidate (
+  CandidateID VARCHAR(50) PRIMARY KEY,
+  FirstName VARCHAR(50) NOT NULL,
+  LastName VARCHAR(50) NOT NULL,
+  TotalPropertyValuation DECIMAL(18,2),
+  PartyID CHAR(3) NOT NULL,
+  ConstituencyID INT NOT NULL,
+  VoterID INT,
+  ElectionID VARCHAR(50),
+  
+  FOREIGN KEY (PartyID) REFERENCES PoliticalParty(PartyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (VoterID) REFERENCES Voter(VoterID) 
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (ElectionID,ConstituencyID) REFERENCES Election(ElectionID,ConstituencyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Results (
+  ResultID VARCHAR(10) PRIMARY KEY,
+  ElectionID VARCHAR(50) NOT NULL,
+  CandidateID VARCHAR(50) NOT NULL,
+  VotesReceive INT NOT NULL,
+  ConstituencyID INT NOT NULL,
+  
+  FOREIGN KEY (ElectionID,ConstituencyID) REFERENCES Election(ElectionID,ConstituencyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (CandidateID) REFERENCES Candidate(CandidateID) 
+  ON DELETE CASCADE ON UPDATE CASCADE	
+);
+
+CREATE TABLE PollingBooth (
+  BoothID VARCHAR(100) PRIMARY KEY,
+  BoothName VARCHAR(100) NOT NULL,
+  City VARCHAR(50),
+  State VARCHAR(50),
+  ConstituencyID INT NOT NULL,
+  
+  FOREIGN KEY (ConstituencyID) REFERENCES Constituency(ConstituencyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Staff (
+  StaffID VARCHAR(10) PRIMARY KEY,
+  FirstName VARCHAR(50) NOT NULL,
+  LastName VARCHAR(50) NOT NULL,
+  VoterID INT,
+  WorkRole VARCHAR(50),
+  Wage DECIMAL(10, 2),
+  PollingBoothID VARCHAR(100) NOT NULL,
+  
+  FOREIGN KEY (VoterID) REFERENCES Voter(VoterID) 
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (PollingBoothID) REFERENCES PollingBooth(BoothID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE VotingFeedback (
+  FeedbackID VARCHAR(10) PRIMARY KEY,
+  FeedbackRating INT,
+  FeedbackDate TIMESTAMP,
+  VoterID INT NOT NULL,
+  PollingBoothID VARCHAR(100) NOT NULL,
+  
+  FOREIGN KEY (VoterID) REFERENCES Voter(VoterID) 
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (PollingBoothID) REFERENCES PollingBooth(BoothID) 
+  ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Ballot (
+  BallotID VARCHAR(100) PRIMARY KEY,
+  VoterID INT NOT NULL,
+  Vote VARCHAR(50) NOT NULL,
+  ElectionID VARCHAR(50) NOT NULL,
+  VoteTimestamp TIMESTAMP,
+  PollingBoothID VARCHAR(100) NOT NULL,
+  ConstituencyID INT NOT NULL,
+  
+  FOREIGN KEY (VoterID) REFERENCES Voter(VoterID) 
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (Vote) REFERENCES Candidate(CandidateID) 
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (ElectionID, ConstituencyID) REFERENCES Election(ElectionID, ConstituencyID) 
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (PollingBoothID) REFERENCES PollingBooth(BoothID) 
+  ON DELETE CASCADE ON UPDATE CASCADE 	
+);
